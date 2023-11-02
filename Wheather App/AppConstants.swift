@@ -8,12 +8,13 @@
 import UIKit
 
 struct AppColors {
-    static let primaryColor = UIColor(named: "primaryColor")
-    // Adicione outras cores aqui
+    static let primaryColorW = UIColor(named: "primaryColorW")
+    static let contrastColor = UIColor(named: "contrastColor")
 }
 
 struct AppImages {
     static let sunIcon = UIImage(named: "sunIcon")
-    // Adicione outras imagens aqui
+    static let background = UIImage(named: "background")
+    
 }
 
