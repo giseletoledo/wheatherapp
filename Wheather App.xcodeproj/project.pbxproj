@@ -23,6 +23,7 @@
 		C1AC85062AF7FA7E009F48A9 /* DailyForecastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AC85052AF7FA7E009F48A9 /* DailyForecastTableViewCell.swift */; };
 		C1AC85082AF7FE74009F48A9 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AC85072AF7FE74009F48A9 /* UIView+Extensions.swift */; };
 		C1AC850A2AF7FFEF009F48A9 /* Core+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AC85092AF7FFEF009F48A9 /* Core+Extensions.swift */; };
+		C1AC850C2AF80AEB009F48A9 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AC850B2AF80AEB009F48A9 /* Service.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		C1AC85052AF7FA7E009F48A9 /* DailyForecastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyForecastTableViewCell.swift; sourceTree = "<group>"; };
 		C1AC85072AF7FE74009F48A9 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		C1AC85092AF7FFEF009F48A9 /* Core+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Core+Extensions.swift"; sourceTree = "<group>"; };
+		C1AC850B2AF80AEB009F48A9 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 				C1AC85012AF66B20009F48A9 /* HourlyForecastCollectionViewCell.swift */,
 				C1AC85072AF7FE74009F48A9 /* UIView+Extensions.swift */,
 				C1AC85092AF7FFEF009F48A9 /* Core+Extensions.swift */,
+				C1AC850B2AF80AEB009F48A9 /* Service.swift */,
 			);
 			path = "Wheather App";
 			sourceTree = "<group>";
@@ -177,6 +180,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1AC850A2AF7FFEF009F48A9 /* Core+Extensions.swift in Sources */,
+				C1AC850C2AF80AEB009F48A9 /* Service.swift in Sources */,
 				C1AC84E72AF436A9009F48A9 /* ViewController.swift in Sources */,
 				C1AC84E32AF436A9009F48A9 /* AppDelegate.swift in Sources */,
 				C1AC85042AF7FA24009F48A9 /* DailyForecastTableView.swift in Sources */,

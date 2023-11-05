@@ -70,6 +70,7 @@ class ViewController: UIViewController {
          setupView()
          fetchData()
          hourlyCollectionView.setDataSourceDelegate(dataSource: self)
+         dailyForecastTableView.setDataSourceDelegate(dataSource: self)
      }
      
      private func fetchData() {

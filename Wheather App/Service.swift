@@ -14,8 +14,7 @@ struct City {
 }
 
 class Service {
-    
-    private let baseURL: String = "https://api.openweathermap.org/data/3.0/onecall"
+    private let baseURL: String = "https://api.openweathermap.org/data/2.5/onecall"
     private let apiKey: String = ""
     private let session = URLSession.shared
     
@@ -26,13 +25,13 @@ class Service {
         let task = session.dataTask(with: url) { data, response, error in
             
             guard let data else {
-                print(data)
                 completion(nil)
                 return
             }
             
             do {
                 let forecastResponse = try JSONDecoder().decode(ForecastResponse.self, from: data)
+                print(forecastResponse)
                 completion(forecastResponse)
             } catch {
                 print(error)
