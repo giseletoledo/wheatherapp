@@ -7,14 +7,17 @@
 
 import UIKit
 
-struct AppColors {
-    static let primaryColorW = UIColor(named: "primaryColorW")
-    static let contrastColor = UIColor(named: "contrastColor")
+struct AppText {
+    static let citylabel = "Sao Paulo"
+    static let temperatureLabel = "25°C"
+    static let humidityLabel = "Umidade"
+    static let humidityValueLabel = "1000mm"
+    static let windLabel = "Vento"
+    static let windValueLabel =  "10km/h"
 }
 
 struct AppImages {
     static let sunIcon = UIImage(named: "sunIcon")
     static let background = UIImage(named: "background")
-    
 }
 
