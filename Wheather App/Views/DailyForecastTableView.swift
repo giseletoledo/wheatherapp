@@ -8,6 +8,7 @@
 import UIKit
 
 class DailyForecastTableView: UITableView {
+    var dataSourceDelegate: UITableViewDataSource?
     
     // MARK: - Initialization
     
@@ -26,20 +27,13 @@ class DailyForecastTableView: UITableView {
     private func setupTableView() {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.backgroundColor = .clear
-        self.dataSource = self
         self.register(DailyForecastTableViewCell.self, forCellReuseIdentifier: DailyForecastTableViewCell.identifier)
         self.separatorColor = UIColor.contrastColor
     }
+    
+    func setDataSourceDelegate(dataSource: UITableViewDataSource) {
+            self.dataSourceDelegate = dataSource
+            self.dataSource = dataSourceDelegate
+        }
 }
 
-extension DailyForecastTableView: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        10
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: DailyForecastTableViewCell.identifier,
-                                                 for: indexPath)
-        return cell
-    }
-}

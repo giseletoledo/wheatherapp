@@ -8,6 +8,7 @@
 import UIKit
 
 class HourlyCollectionView: UICollectionView {
+    var dataSourceDelegate: UICollectionViewDataSource?
     
     init() {
         let layout = UICollectionViewFlowLayout()
@@ -19,7 +20,6 @@ class HourlyCollectionView: UICollectionView {
         
         self.translatesAutoresizingMaskIntoConstraints = false
         self.backgroundColor = .clear
-        self.dataSource = self
         self.register(HourlyForecastCollectionViewCell.self, forCellWithReuseIdentifier: HourlyForecastCollectionViewCell.indentifier)
         self.showsHorizontalScrollIndicator = false
     }
@@ -27,16 +27,10 @@ class HourlyCollectionView: UICollectionView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func setDataSourceDelegate(dataSource: UICollectionViewDataSource) {
+            self.dataSourceDelegate = dataSource
+            self.dataSource = dataSourceDelegate
+        }
 }
 
-extension HourlyCollectionView: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-           return 10
-       }
-       
-       func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-           let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HourlyForecastCollectionViewCell.indentifier, for: indexPath)
-           
-           return cell
-       }
-}

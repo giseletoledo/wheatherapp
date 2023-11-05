@@ -17,30 +17,27 @@ class HeaderView: UIView {
             return view
         }()
     
-      private lazy var cityLabel: UILabel = {
+    public lazy var cityLabel: UILabel = {
           let label = UILabel()
           label.translatesAutoresizingMaskIntoConstraints = false
           label.font = UIFont.systemFont(ofSize: 20)
-          label.text = AppText.citylabel
           label.textAlignment = .center
           label.textColor = UIColor.primaryColor
           return label
       }()
       
-      private lazy var temperatureLabel: UILabel = {
+    public lazy var temperatureLabel: UILabel = {
           let label = UILabel()
           label.translatesAutoresizingMaskIntoConstraints = false
           label.font = UIFont.systemFont(ofSize: 70, weight: .bold)
-          label.text = AppText.temperatureLabel
           label.textAlignment = .left
           label.textColor = UIColor.primaryColor
           return label
       }()
       
-      private lazy var weatherIcon: UIImageView = {
+    public lazy var weatherIcon: UIImageView = {
           let imageView = UIImageView()
           imageView.translatesAutoresizingMaskIntoConstraints = false
-          imageView.image = AppImages.sunIcon
           imageView.contentMode = .scaleAspectFit
           return imageView
       }()
@@ -67,7 +64,6 @@ class HeaderView: UIView {
         
         let shadowColor = UIColor.shadowColor
         
-        // Adicione uma sombra simples
         self.containerView.layer.shadowColor = shadowColor?.cgColor
         self.containerView.layer.shadowOffset = CGSize(width: 4, height: 4)
         self.containerView.layer.shadowOpacity = 0.5
@@ -89,13 +85,15 @@ class HeaderView: UIView {
                                 cityLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 15),
                                 cityLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -15),
                                 cityLabel.heightAnchor.constraint(equalToConstant: 20),
-                                temperatureLabel.topAnchor.constraint(equalTo: cityLabel.bottomAnchor, constant: 21),
-                                temperatureLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 26),
+                                
+                                temperatureLabel.topAnchor.constraint(equalTo: cityLabel.bottomAnchor, constant: 12),
+                                temperatureLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 18),
+                                temperatureLabel.heightAnchor.constraint(equalToConstant: 71),
                                 weatherIcon.heightAnchor.constraint(equalToConstant: 86),
                                 weatherIcon.widthAnchor.constraint(equalToConstant: 86),
-                                weatherIcon.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -26),
+                                weatherIcon.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -18),
                                 weatherIcon.centerYAnchor.constraint(equalTo: temperatureLabel.centerYAnchor),
-                                weatherIcon.leadingAnchor.constraint(equalTo: temperatureLabel.trailingAnchor, constant: 15)
+                                weatherIcon.leadingAnchor.constraint(equalTo: temperatureLabel.trailingAnchor, constant: 8)
                 ])
     }
 }

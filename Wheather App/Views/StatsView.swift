@@ -18,10 +18,9 @@ class StatsView: UIView {
           return label
       }()
       
-      private lazy var humidityValueLabel: UILabel = {
+      lazy var humidityValueLabel: UILabel = {
           let label = UILabel()
           label.translatesAutoresizingMaskIntoConstraints = false
-          label.text = AppText.humidityValueLabel
           label.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
           label.textColor = UIColor.contrastColor
           return label
@@ -34,7 +33,7 @@ class StatsView: UIView {
           return stackView
       }()
       
-      private lazy var windLabel: UILabel = {
+      lazy var windLabel: UILabel = {
           let label = UILabel()
           label.translatesAutoresizingMaskIntoConstraints = false
           label.text = AppText.windLabel
@@ -43,10 +42,9 @@ class StatsView: UIView {
           return label
       }()
       
-      private lazy var windValueLabel: UILabel = {
+     lazy var windValueLabel: UILabel = {
           let label = UILabel()
           label.translatesAutoresizingMaskIntoConstraints = false
-          label.text = AppText.windValueLabel
           label.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
           label.textColor = UIColor.contrastColor
           return label
