@@ -13,10 +13,12 @@ class HourlyForecastCollectionViewCell: UICollectionViewCell {
     
     static let indentifier: String = "HourlyForecastCollectionViewCell"
     
+    public var headerView: HeaderView?
+    
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [hourLabel,
                                                        iconImageView,
-                                                       termperatureLabel])
+                                                       temperatureLabel])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.spacing = 4
@@ -40,7 +42,7 @@ class HourlyForecastCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    public lazy var termperatureLabel: UILabel = {
+    public lazy var temperatureLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor.contrastColor
@@ -84,9 +86,8 @@ class HourlyForecastCollectionViewCell: UICollectionViewCell {
     }
     
     func loadData(time: String?, icon: UIImage?, temp: String?) {
-        let headerView = HeaderView()
         hourLabel.text = time
         iconImageView.image = icon
-        headerView.temperatureLabel.text = temp
+        temperatureLabel.text = temp
     }
 }

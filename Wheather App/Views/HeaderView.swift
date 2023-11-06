@@ -81,19 +81,18 @@ class HeaderView: UIView {
              ])
                 
                 NSLayoutConstraint.activate([
-                    cityLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 15),
-                                cityLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 15),
-                                cityLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -15),
-                                cityLabel.heightAnchor.constraint(equalToConstant: 20),
-                                
-                                temperatureLabel.topAnchor.constraint(equalTo: cityLabel.bottomAnchor, constant: 12),
-                                temperatureLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 18),
-                                temperatureLabel.heightAnchor.constraint(equalToConstant: 71),
-                                weatherIcon.heightAnchor.constraint(equalToConstant: 86),
-                                weatherIcon.widthAnchor.constraint(equalToConstant: 86),
-                                weatherIcon.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -18),
-                                weatherIcon.centerYAnchor.constraint(equalTo: temperatureLabel.centerYAnchor),
-                                weatherIcon.leadingAnchor.constraint(equalTo: temperatureLabel.trailingAnchor, constant: 8)
+                    cityLabel.topAnchor.constraint(equalTo: topAnchor, constant: 15),
+                              cityLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
+                              cityLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
+                              cityLabel.heightAnchor.constraint(equalToConstant: 20),
+                              temperatureLabel.topAnchor.constraint(equalTo: cityLabel.bottomAnchor, constant: 12),
+                              temperatureLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 18),
+                              temperatureLabel.heightAnchor.constraint(equalToConstant: 71),
+                              weatherIcon.heightAnchor.constraint(equalToConstant: 86),
+                              weatherIcon.widthAnchor.constraint(equalToConstant: 86),
+                              weatherIcon.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -18),
+                              weatherIcon.centerYAnchor.constraint(equalTo: temperatureLabel.centerYAnchor),
+                              weatherIcon.leadingAnchor.constraint(equalTo: temperatureLabel.trailingAnchor, constant: 8)
                 ])
     }
 }

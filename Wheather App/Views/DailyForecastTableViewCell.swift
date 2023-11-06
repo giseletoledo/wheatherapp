@@ -86,7 +86,8 @@ class DailyForecastTableViewCell: UITableViewCell {
         contentView.addSubview(stackView)
         
         NSLayoutConstraint.activate([
-            weekDayLabel.widthAnchor.constraint(lessThanOrEqualToConstant: 50)
+            weekDayLabel.widthAnchor.constraint(lessThanOrEqualToConstant: 50),
+            iconImageView.heightAnchor.constraint(equalToConstant: 30)
         ])
     }
     
