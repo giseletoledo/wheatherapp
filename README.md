@@ -27,3 +27,6 @@ Diferente do projeto original, utilizei a versão 2.5
 <img width="33%" src="https://github.com/giseletoledo/wheatherapp/blob/main/WeatherAppiPhone15Pro.png" alt="Screenshot app tela ao figma">
 <img width="33%" src="https://github.com/giseletoledo/wheatherapp/blob/main/WeatherAppiPhone15Pro1.gif" alt="Screenshot tela preenchida com dados da API">
 </p>
+<p align="center">
+<img width="33%" src="https://github.com/giseletoledo/wheatherapp/blob/main/WeatherAppiPhone15Pro2.gif" alt="Screenshot tela preenchida com dados da API">
+</p>
