@@ -22,6 +22,27 @@ class ViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    
+    private lazy var leftArrowButton: UIButton = {
+        let button = UIButton()
+        let leftArrowImage = UIImage(systemName: "arrow.left")
+        button.setImage(leftArrowImage, for: .normal)
+        button.tintColor = .white
+        button.addTarget(self, action: #selector(leftArrowTapped), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+
+    private lazy var rightArrowButton: UIButton = {
+        let button = UIButton()
+        let rightArrowImage = UIImage(systemName: "arrow.right")
+        button.setImage(rightArrowImage, for: .normal)
+        button.tintColor = .white
+        button.addTarget(self, action: #selector(rightArrowTapped), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+
 
     private lazy var statsView: StatsView = {
         let view = StatsView()
@@ -61,9 +82,55 @@ class ViewController: UIViewController {
         return tableView
     }()
     
+    @objc func leftArrowTapped() {
+        currentCityIndex -= 1
+        if currentCityIndex < 0 {
+            currentCityIndex = cities.count - 1
+        }
+        updateViewForCurrentCity()
+        updateCityLabel()
+    }
+
+    @objc func rightArrowTapped() {
+        currentCityIndex += 1
+        if currentCityIndex >= cities.count {
+            currentCityIndex = 0
+        }
+        updateViewForCurrentCity()
+        updateCityLabel()
+    }
+
+    
+    private let cities: [City] = [
+        City(lat: "-3.10719", lon: "-60.0261", name: "Manaus"),
+        City(lat: "-15.7801", lon: "-47.9292", name: "Brasília"),
+        City(lat: "-12.9716", lon: "-38.5016", name: "Salvador"),
+        City(lat: "-27.595377", lon: "-48.548049", name: "Florianópolis"),
+        City(lat: "-23.6814346", lon: "-46.9249599", name: "São Paulo")
+    ]
+
     private let service = Service()
-     private var city = City(lat: "-23.6814346", lon: "-46.9249599", name: "São Paulo")
-     private var forecastResponse: ForecastResponse?
+    
+    private var currentCityIndex: Int = 0
+    
+    private var city: City {
+        return cities[currentCityIndex]
+    }
+
+    private func updateViewForCurrentCity() {
+        fetchData()
+    }
+
+    private func updateCityLabel() {
+        headerView.cityLabel.text = city.name
+        
+        headerView.temperatureLabel.text = forecastResponse?.current.temp.toCelsius()
+        statsView.humidityValueLabel.text = "\(forecastResponse?.current.humidity ?? 0)mm"
+        statsView.windValueLabel.text = "\(forecastResponse?.current.windSpeed ?? 0)km/h"
+        headerView.weatherIcon.image = UIImage(named: forecastResponse?.current.weather.first?.icon ?? "")
+    }
+
+    private var forecastResponse: ForecastResponse?
 
      override func viewDidLoad() {
          super.viewDidLoad()
@@ -74,7 +141,7 @@ class ViewController: UIViewController {
      }
      
      private func fetchData() {
-         service.fecthData(city: city) { [weak self] response in
+         service.fecthData(city: self.city) { [weak self] response in
              self?.forecastResponse = response
              DispatchQueue.main.async {
                  self?.loadData()
@@ -83,13 +150,7 @@ class ViewController: UIViewController {
      }
      
      private func loadData() {
-         headerView.cityLabel.text = city.name
-         
-         headerView.temperatureLabel.text = forecastResponse?.current.temp.toCelsius()
-         statsView.humidityValueLabel.text = "\(forecastResponse?.current.humidity ?? 0)mm"
-         statsView.windValueLabel.text = "\(forecastResponse?.current.windSpeed ?? 0)km/h"
-         headerView.weatherIcon.image = UIImage(named: forecastResponse?.current.weather.first?.icon ?? "")
-         
+         updateCityLabel()
          
          if forecastResponse?.current.dt.isDayTime() ?? true {
              backgroundView.image = UIImage(named:"background-day")
@@ -108,6 +169,8 @@ class ViewController: UIViewController {
     
     private func setHierarchy() {
         view.addSubview(backgroundView)
+        view.addSubview(leftArrowButton)
+        view.addSubview(rightArrowButton)
         view.addSubview(headerView)
         view.addSubview(statsView)
         view.addSubview(hourlyForecastLabel)
@@ -122,6 +185,12 @@ class ViewController: UIViewController {
             backgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             backgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             backgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            leftArrowButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            leftArrowButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+                   
+            rightArrowButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            rightArrowButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
             headerView.topAnchor.constraint(equalTo:  view.safeAreaLayoutGuide.topAnchor, constant: 60),
             headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 35),
@@ -139,19 +208,19 @@ class ViewController: UIViewController {
             hourlyCollectionView.topAnchor.constraint(equalTo: hourlyForecastLabel.bottomAnchor, constant: 29),
             hourlyCollectionView.heightAnchor.constraint(equalToConstant: 84),
             hourlyCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                       hourlyCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            hourlyCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
         
         NSLayoutConstraint.activate([
-                   dailyForecastLabel.topAnchor.constraint(equalTo: hourlyCollectionView.bottomAnchor, constant: 29),
-                   dailyForecastLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 35),
-                   dailyForecastLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -35),
-                   dailyForecastTableView.topAnchor.constraint(equalTo: dailyForecastLabel.bottomAnchor, constant: 16),
-                   dailyForecastTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                   dailyForecastTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                   dailyForecastTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            dailyForecastLabel.topAnchor.constraint(equalTo: hourlyCollectionView.bottomAnchor, constant: 29),
+            dailyForecastLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 35),
+            dailyForecastLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -35),
+            dailyForecastTableView.topAnchor.constraint(equalTo: dailyForecastLabel.bottomAnchor, constant: 16),
+            dailyForecastTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            dailyForecastTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            dailyForecastTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
                    
-               ])
+        ])
     }
     
 }
