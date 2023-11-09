@@ -6,13 +6,13 @@ Versão do XCode utilizada: 15.0.1
 
 ## Conteúdo do curso
 
-Introdução ao XCode
-UIKit
-Introdução ao ViewCode
-ViewCode vs Storyboards
-Autolayout
-Integração com APIs
-Processamento multi-thread
+- Introdução ao XCode
+- UIKit
+- Introdução ao ViewCode
+- ViewCode vs Storyboards
+- Autolayout
+- Integração com APIs
+- Processamento multi-thread
 
 ## Link do Figma
 https://www.figma.com/file/OczdlZrkU7Z7DyYLLDoiPo/App-Tempo?type=design&node-id=0%3A1&mode=dev
